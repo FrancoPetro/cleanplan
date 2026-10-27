@@ -23,7 +23,7 @@ function AddJobForm({ onAddJob }: AddJobFormProps) {
       address,
       date,
       hours: Number(hours),
-      price: Number(price),
+      price: Number(price.replace(',', '.')),
       status: 'pending',
     }
 
@@ -73,9 +73,11 @@ function AddJobForm({ onAddJob }: AddJobFormProps) {
         />
         <input
           className={inputClass}
-          type="number"
-          placeholder="Price (DKK)"
-          min="0"
+          type="text"
+          inputMode="decimal"
+          placeholder="Price (DKK), e.g. 1350,50"
+          pattern="\d+([.,]\d{1,2})?"
+          title="Use numbers, with up to 2 decimals (e.g. 1350,50)"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
