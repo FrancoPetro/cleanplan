@@ -7,6 +7,10 @@ type AddJobFormProps = {
 
 const inputClass = 'w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm'
 
+const currentYear = new Date().getFullYear()
+const minDate = `${currentYear - 1}-01-01`
+const maxDate = `${currentYear + 5}-12-31`
+
 function AddJobForm({ onAddJob }: AddJobFormProps) {
   const [client, setClient] = useState('')
   const [address, setAddress] = useState('')
@@ -57,6 +61,8 @@ function AddJobForm({ onAddJob }: AddJobFormProps) {
         <input
           className={inputClass}
           type="date"
+          min={minDate}
+          max={maxDate}
           value={date}
           onChange={(e) => setDate(e.target.value)}
           required
